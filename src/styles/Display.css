@@ -1,0 +1,14 @@
+
+input[type=radio] {
+    display: none;
+}
+
+img {
+    margin: 20px;
+    cursor: pointer;
+}
+
+input[type=radio]:checked + img {
+    border: 3px solid blue;
+    padding: 10px;
+}
