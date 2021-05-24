@@ -26,19 +26,23 @@ function App() {
 
   const handleCapturePokemon = (e: React.MouseEvent<HTMLButtonElement>): void => {
 
-    const acc: Results = { ...results }
 
-    randomPokemon.forEach(({ name }) => {
-      if (!results[name]) acc[name] = {
-        name: name,
-        encountered: 1,
-        captured: 0
-      }
-      else acc[name].encountered++
-      if (name === selectedPokemon) acc[name].captured++;
+    setResults(prevResults => {
+      const newResults = { ...prevResults }
+
+      randomPokemon.forEach(({ name }) => {
+        if (!newResults[name]) newResults[name] = {
+          name: name,
+          encountered: 1,
+          captured: 0
+        }
+        else newResults[name].encountered++
+        if (name === selectedPokemon) newResults[name].captured++;
+      })
+
+      return newResults;
     })
 
-    setResults(acc)
     setCounter((counter => counter + 1))
 
     if (counter === 5) setDisplayResults(true)
